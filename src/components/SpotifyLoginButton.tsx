@@ -4,7 +4,7 @@ const SPOTIFY_AUTH_ENDPOINT = import.meta.env.VITE_SPOTIFY_AUTH_ENDPOINT;
 
 const scopes = ['user-read-private', 'user-read-email', 'user-read-recently-played'].join(' ');
 
-export const SpotifyLoginButton = ({ sessionId }: { sessionId: string }) => {
+const SpotifyLoginButton = ({ sessionId }: { sessionId: string }) => {
   const getAuthUrl = () => {
     return (
       `${SPOTIFY_AUTH_ENDPOINT}` +
@@ -22,3 +22,5 @@ export const SpotifyLoginButton = ({ sessionId }: { sessionId: string }) => {
     </div>
   );
 };
+
+export default SpotifyLoginButton;
