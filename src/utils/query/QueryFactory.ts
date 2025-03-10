@@ -46,11 +46,11 @@ export const QueryFactory = {
         .then(res => res.data),
   }),
 
-  postImageDescription: (sessionId: string, image: FormData) => ({
-    queryKey: ['postImageDescription', sessionId] as QueryKey,
-    queryFn: () =>
+  getImageDescription: (sessionId: string) => ({
+    mutationKey: ['getImageDescription', sessionId] as QueryKey,
+    mutationFn: (form: FormData) =>
       axiosClient
-        .post<void>(`genai/image-description`, image, {
+        .post<void>(`genai/image-description`, form, {
           headers: {
             'X-Session-Id': sessionId,
             'Content-Type': 'multipart/form-data',
