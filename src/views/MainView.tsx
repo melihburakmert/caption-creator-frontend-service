@@ -99,6 +99,23 @@ export const MainView = () => {
   // Caption
   const [caption, setCaption] = useState<string>('');
 
+  const { data: fetchedCaption } = useQuery({
+    ...QueryFactory.getCaption(sessionId),
+    enabled: !!recentlyPlayedFetched && !!image,
+    refetchInterval: () => {
+      if (caption.trim() !== '') {
+        return false;
+      }
+      return 5000;
+    },
+  });
+
+  useEffect(() => {
+    if (fetchedCaption && fetchedCaption.trim() !== '') {
+      setCaption(fetchedCaption);
+    }
+  }, [fetchedCaption]);
+
   return (
     <div>
       <ParentBox image={image} caption={caption} handleImageUpload={handleImageUpload} />
